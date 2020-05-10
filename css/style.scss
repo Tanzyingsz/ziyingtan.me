@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
-
+@import "bourbon";
 $social-color-pallete: (
   linkedin: #007bb6,
   youtube: #df1c31,
@@ -56,12 +56,97 @@ p {
   background-size: cover;
 }
 
+a {
+  text-decoration: none;
+}
+//content-layer
 .z-index-1 {
   z-index: 1;
 }
 
-/* @media (max-width: 768px) {
-  .content-container {
-    padding: 0 100px;
+.icon-link {
+  cursor: pointer;
+  width: $social-icon-size;
+  height: $social-icon-size;
+  background-color: $social-default-btn-color;
+  line-height: $social-icon-size;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  margin: 5px;
+  @include box-sizing(content-box);
+
+  $social-default-icon-color: #fff;
+  $social-default-btn-color: #666;
+  $social-icon-size: 60px;
+  $social-icon-border: 2px;
+  $social-icon-border-radius: 5px;
+
+  &.fill {
+    @each $social-alias, $social-color in $social-color-pallete {
+      &.#{$social-alias} {
+        background-color: $social-color;
+        &:hover {
+          background-color: #fff;
+          .fa-#{$social-alias} {
+            color: $social-color;
+            @include transition(color 150ms ease-in-out);
+          }
+        }
+      }
+    }
   }
-} */
+
+  &.brand {
+    background-color: #fff;
+    .fa {
+      color: $brand-color;
+    }
+  }
+
+  &.round {
+    border-radius: 50%;
+  }
+
+  &.round-corner {
+    border-radius: $social-icon-border-radius;
+  }
+
+  &:hover {
+    @include transition(background-color 150ms ease-in-out);
+    height: $social-icon-size - $social-icon-border * 2;
+    line-height: $social-icon-size - $social-icon-border * 2;
+    width: $social-icon-size - $social-icon-border * 2;
+    background-color: #fff;
+
+    @each $social-alias, $social-color in $social-color-pallete {
+      &.#{$social-alias} {
+        border: $social-icon-border solid $social-color;
+      }
+    }
+
+    .fa {
+      line-height: $social-icon-size - $social-icon-border * 2;
+    }
+
+    @each $social-alias, $social-color in $social-color-pallete {
+      .fa-#{$social-alias} {
+        color: $social-color;
+        @include transition(color 150ms ease-in-out);
+      }
+    }
+  }
+
+  .fa {
+    color: $social-default-icon-color;
+    line-height: $social-icon-size;
+    font-size: $social-icon-size - $social-icon-size * 0.4;
+  }
+}
+
+.brand-icons {
+  background-color: #ddd;
+  padding: 10px 0;
+}
